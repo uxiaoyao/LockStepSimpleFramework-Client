@@ -16,7 +16,7 @@ public class SimpleSocket {
         Console.WriteLine("Hello World!");
         //创建实例
         socketClient = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-        IPAddress ip = IPAddress.Parse("192.168.0.140");
+        IPAddress ip = IPAddress.Parse("192.168.2.13");
         IPEndPoint point = new IPEndPoint(ip, 2333);
         //进行连接
         socketClient.Connect(point);
