@@ -9,6 +9,7 @@
 
 using UnityEngine;
 using System.Collections;
+using Lean.Touch;
 
 public class BattleLogicMonoBehaviour : MonoBehaviour {
 
@@ -30,11 +31,23 @@ public class BattleLogicMonoBehaviour : MonoBehaviour {
 	void Update () {
 #if _CLIENTLOGIC_
         battleLogic.updateLogic();
+
 #endif
+    }
+
+    public LeanScreenDepth ScreenDepth;
+
+    public void ClickOnGround(LeanFinger finger)
+    {
+        var worldPoint = ScreenDepth.Convert(finger.ScreenPosition, gameObject);
+        battleLogic.clickOnGround((Fix64)worldPoint.x, (Fix64)worldPoint.z);
+        Debug.Log(string.Format("Cick On Ground {0}, {1}", worldPoint.x, worldPoint.z));
+
     }
 
     public BattleLogic getBattleLogic()
     {
         return battleLogic;
     }
+
 }
