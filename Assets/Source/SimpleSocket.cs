@@ -16,14 +16,14 @@ public class SimpleSocket {
         Console.WriteLine("Hello World!");
         //创建实例
         socketClient = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-        IPAddress ip = IPAddress.Parse("192.168.2.13");
-        IPEndPoint point = new IPEndPoint(ip, 2333);
         //进行连接
-        socketClient.Connect(point);
+        socketClient.Connect("127.0.0.1", 2333);
 
         //不停的接收服务器端发送的消息
-        Thread thread = new Thread(Recive);
-        thread.IsBackground = true;
+        Thread thread = new Thread(Recive)
+        {
+            IsBackground = true
+        };
         thread.Start(socketClient);
     }
 
